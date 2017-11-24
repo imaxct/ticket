@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <style>
+            .movie {  position: relative;  color: #fff;  padding: .3rem;  line-height: 1;  overflow: hidden;  box-sizing: border-box;  -webkit-filter: blur(0);  filter: blur(0);  }
+            .movie-filter {  top: 0;  left: 0;  right: 0;  bottom: 0;  width: 100%;  position: absolute;  background-color: #40454d;  opacity: .55;  }
+            .movie-back {  top: 0;  left: 0;  right: 0;  bottom: 0;  width: 100%;  z-index: 0;  position: absolute;  filter: blur(.6rem);
+                -webkit-filter: blur(.6rem);  background-size: cover;  background-repeat: no-repeat;  background-position-y: 40%;  }
+            .movie-container {  z-index: 1;  display: block;  position: relative;  }
+            .movie-container img {  float: left;  display: inline-block;  vertical-align: top;  background: none;  }
+            .movie-container .info {  float: left;  display: inline-block;  padding-top: .9rem;  padding-left: .8rem;  }
+            .row.movies {  margin-left: auto;  }
+            .info .ename {font-size: smaller}
+            .touming {opacity: .66;}
+            .info .intro {padding-top: .5rem; font-size: smaller;}
+            .info .name {font-size: larger; padding-bottom: .5rem;}
+            .price{ color: red; font-size: large;}
+            .brif{ font-size: medium; margin: .3rem .5rem .3rem .5rem;}
+        </style>
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="#">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class="title">电影标题</h1>
+        </header>
+        <div class="content native-scroll">
+            <div class="row movies">
+                <div class="movie">
+                    <div class="movie-back"
+                         style="background-image: url('http://p1.meituan.net/movie/b9395cd202a461303cf06cea89292071556090.png@177w_249h.webp')"></div>
+                    <div class="movie-filter"></div>
+                    <div class="movie-container">
+                        <img src="http://p1.meituan.net/movie/b9395cd202a461303cf06cea89292071556090.png@177w_249h.webp">
+                        <div class="info">
+                            <div class="intro name">名字</div>
+                            <div class="intro ename touming">英文名字</div>
+                            <div class="intro touming">类型</div>
+                            <div class="intro touming">国家/时长</div>
+                            <div class="intro touming">上映时间</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left: 0;">
+                <p class="brif">本片讲述的是受到超人（亨利·卡维尔 饰）无私奉献的影响，蝙蝠侠（本·阿弗莱克 饰）重燃了对人类的信心，接受了新盟友神奇女侠（盖尔·加朵 饰）的帮助，去对抗更加强大的敌人。蝙蝠侠和神奇女侠一同寻找并招募了一支超人类联盟来抵挡新觉醒的威胁。但尽管这支队伍集结了超人、蝙蝠侠、神奇女侠、闪电侠（埃兹拉·米勒 饰）、海王（杰森·莫玛 饰）和钢骨（雷·费舍 饰）等人，他们似乎无法阻止敌人对地球的进攻……</p>
+            </div>
+            <div class="content-block-title">场次</div>
+            <div class="list-block media-list">
+                <ul>
+                    <li>
+                        <a href="buy.html" class="item-link item-content">
+                            <div class="item-inner">
+                                <div class="item-title-row">
+                                    <div class="item-title">13:30</div>
+                                    <div class="item-after" style="font-size: large; color: #eb5211; font-weight: bold;">33元</div>
+                                </div>
+                                <div class="item-subtitle" style="padding-top: .2rem;">杜比全景声厅</div>
+                                <div class="item-text">14:50结束</div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/??sm.min.js,sm-extend.min.js'
+        charset='utf-8'></script>
+</body>
+</html>

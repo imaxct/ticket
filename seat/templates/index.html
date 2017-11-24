@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <header class="bar bar-nav">
+            <h1 class="title">喵眼电影</h1>
+        </header>
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#" id="movies">
+                <span class="icon icon-picture"></span>
+                <span class="tab-label">电影</span>
+            </a>
+            <a class="tab-item external" href="#" id="orders">
+                <span class="icon icon-cart"></span>
+                <span class="tab-label">订单</span>
+            </a>
+            <a class="tab-item external" href="#" id="mine">
+                <span class="icon icon-me"></span>
+                <span class="tab-label">我的</span>
+            </a>
+        </nav>
+        <div class="content native-scroll" id="content">
+
+        </div>
+    </div>
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/??sm.min.js,sm-extend.min.js'
+        charset='utf-8'></script>
+<script>
+    $(document)
+        .on('pageInit', 'body', function () {
+            $('#content').load('movies.html');
+        })
+        .on('click', '.tab-item', function (event) {
+            var el = event.currentTarget;
+            $($(el).parent('.bar-tab').children('.tab-item')).removeClass('active');
+            $(el).addClass('active');
+        })
+        .on('click', '#movies', function () {
+            $('#content').load('movies.html');
+        })
+        .on('click', '#orders', function () {
+            $('#content').load('orders.html');
+        })
+        .on('click', '#mine', function () {
+            $('#content').load('mine.html');
+        });
+    $.init();
+</script>
+</body>
+</html>

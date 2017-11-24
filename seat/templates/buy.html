@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/??sm.min.css,sm-extend.min.css">
+</head>
+<body>
+<div class="page-group">
+    <div class="page page-current">
+        <style>
+            .seat {  float: left;display: inline-block;  font-size: 0;  width: 30px;  height: 26px;  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAXdEVYdENyZWF0aW9uIFRpbWUAMjAxNC4yLjE0TpwzHgAAAWtJREFUWIXt2L9Kw0AcwPGvuQ4WkwZuCWmGzl1dSsG1L6DiKL6A4kPoC4hPIfUFBEf9PUKf4A46RiudLjgYtEONgSstwn3X+/e5kCzZE5EEuAeOgZjfS8bj8aJhvHUisg8sG6YsgClw2QHu+v3+eVEUKKXWzp7NZpRlOQKeNwEEjtI0ZTgcrh10zsXGmAtrbRUBp004gCzLAG7rm3tV73FT77k2pRRFUQCcRUDchAPQWpPn+Qh4EZGJiDQvWA9TIjIBXvM8H2mtG+fXprjT9oDBYECSJIfz+fypLMs3EZkB7y2XJ8AwTdNelmX8hVutNRC+nqTWGudcb7lcjpxzrdYppeh2u42v0UaAqwfGcdMHv7mirZziUQD6FoC+BaBvAehbAPoWgL4FoG8B6FsA+haAvgWgbwHoWwD6FoC+/Qvgou1/vm1WmxYRMDXGUFXVjkk/VVWFMQbgoQNcWWsja+0JcLBb2ncfwCNw/Qk+3GWURNQyowAAAABJRU5ErkJggg==) no-repeat 0 1px; background-size: 1.1rem 1.1rem; }
+            .seat.sold {  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAXdEVYdENyZWF0aW9uIFRpbWUAMjAxNC4yLjE0TpwzHgAABAFJREFUWIXtmE1sFHUYh5+d2e7sx+xud/thm4Y20AZFjJVIlxbkYMVkESvEGk4m4sGjyM2rB2LsTYmePOnBA9VEipEmSjFcWotCIUSpaWtAaSvbdr9m9nNm1sO2mEa7OzNbCyY+1/n93/fJzH/e+XDMRCN+4AzwCiCzMZ6u0clcheOmmYlGAkCyQkQBPgfedALvAydM1H0G+LZmuzKRKsdlyk6GABw3WfT0TDTirsUKYLXGaZPx446ZaKRkof414G1grGt0UrcoJgL9wBCwx+w6q4JrpICfgbTJvB/YBQSsNnJaXbBKANhnc60lhK1oUgv/C9bKQy9o9yZZh9TeRP3hvXh2tiEGvOipDNlf7pL85hq5ucWaatsdM/cJvRghfLQXHA4MNYcWV3CGZASfG0qwcm6c+FeTtuvXdAaD/d2Ej/WhJVSWPruEOjUHRgkEB74nt9P4aj/hY30Y2QLJi1O2etjeg2LAS3jwALqSY35oGPXqbFkOwCihTs0x/95ZdCVH+OX9iEHv1grKPTsRpDoSF65QjP3zi0lxKUXi6ysIUh3+yKNbK+je0QKAOvVrxZw6NQeAtL3FVh/bgoLHBYCeylTM6eksUN4StvrYWmUDh2iv1ZYJlgx708y2oJEvAiDKld9hRZ8EgJ6uvBU2wrZgbnYBAP/+XRVzcl/5eH41bxXbgsrELQw1R/0LPQQPPYVDWF/KIQgEn+0mdKQHQ82RHr9lq4+tR52rrYHiQhyps5XWkwMIHgk9nSE3u4ieyiAGvLg7WxD9XoxsgcWPzpOdvourrYHC70uWeoknu9resbKgYfAAj7wRRUtmUK/OoExOI7jrkNoakbY1IXU042oJgW6Qnpjmj49HKdyJETj4BK2njiK46sj+dMd0P0vP4tDAPuoP76W4lCJzvTyAteU0sU8uEvt0DGdYRpQ96EoWbUWB0l8XR702S/C5buqjT2MUisRHvjfV0/Qe9DzeTvilXrS4wvzQMFpcWR8oldCW0+Rv30NbTq+TA9CVLAsfnEOLK4QHevHu7tg8QYfLSfPrz0OpxOKH5/8uZxItrrB4ZoSSrtN04hAOV/ULaErQ3/sYzpBM8rsb5G/fsyW3Rv63GMmx6zhDctURZVrQt6cTgNTlmzXJrZG6dKNct3tH1awpQde2JvSkanlEbEQxlkSLK0jtzVWzpgRF2W17322EnlAQ/Z6qOVOCRraAszFY/s7YBASvhLMpiJ6p/jfP1BxMXb5J6EgPHe++RnEpVbNgXWMAwecmceGHzRGMj0zgEAUCB3cjdVTfN9UwMnkSoz+y8uV41WzNn53/Ng/9n4X/hODmzo/NRRGAsw/aogLDTuAU5bt5EPA9WJ/7qMAXwFt/Ary9XoLKZbyAAAAAAElFTkSuQmCC); }
+            .seat.selected {  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABd0RVh0Q3JlYXRpb24gVGltZQAyMDE0LjIuMTROnDMeAAAAHHRFWHRTb2Z0d2FyZQBBZG9iZSBGaXJld29ya3MgQ1M26LyyjAAAAxtJREFUWIXt2HlIFGEYx/HvrOaR7nZ41q6pGZKUSSZEKESlJZUdalaKHWJJhQVZEEFQYUQE3RdBB1hUGoFhEIlCpYGBIRRJom1qdiii6a5Xutsf2lBgOzOOrgT7++9lnveZz8zODu87QlxZmha4BCQCnvw72uKYuyYbx2UnrixtImC2UWICCoBsZ+ACsEVG34VAiXoeANESxz2B7YBVAyTLbHoirizNTRULGOpxQmZ5ihBXlmZV0P8NcAgoLY65O6AQ5gQsBU4B8+XOUwr8nQ6gGuiUWa8FwgCd0hM5K50wFB2Dz+SYR2OPk6iJA6g2DqDaOIBqMy5AAYH06Yncj7hIpmGTzVq7AwUEsgJSSfKLx03jSqyX7XWD3YEZhhTivReL40ffn9qstytwmz6ZBJ9l4riwuZj8b09szrEbMHXaWtb5LhfHRS2l3G56KDnPLsCN/qtJ8V8ljp+1vuTG5wdYkV5IjTlwve8KNk9bI45LWsu52nBHFg7GGJjgG8tWfZI4ftH2msuNebJxIAF00UxgtkcIzoLyZWO892Iy9BvEcXl7Jefqb2KxWhT1sXnm3FkHCPUIptpcy7Ha8/RYemU1jfWKJisgFQEBgIofVZz9dEMxDiTuoN7ND4Awj1kcCcnGVeMi2XDJ1EXsDkgXcZUdbzltvE6/tV8xThJ4uSFPvOo5nqEcnrkHF82Ef9ZHT4kie8ZWNMJg26rO95wyXhsxThL4qr2S8/W3RGSENoxDwbuGfSYXTY5kf2CmiHtn+sDJj1fos/wcMU4SCPC8reKvf16kbi4Hg3f+hYzShZMTlInTEK7aXEtu3SV6LX2qcABOIRnzjkoVGbsbae/vIGpSOAICBjd/At311Jg/skAXTk7wDhFcYzZyvO4C3ZYe1ThQuC9e7bPU5vKorqueI7Vn6BroHhUcKHxRF7WUcqupYNgXrbG7kaN150YVByPYuBc2F/Olt5kNfisJcjfQOWCivK2Se18fj9rP+mdG+unDbnHsSdTGAVSb/wI4Kh/GxygmDSC9cxm/5DsDexm8k0mAx/h6xJgZvHH7fgGbduyUhrM44wAAAABJRU5ErkJggg==);  }
+            .intro{ display: inline-block; height: 26px; font-size: large; padding-bottom: 2px; margin-bottom: 2px; margin-top: 0; float: left;}
+            .info {font-size: medium; margin-left: .5rem; margin-right: 5rem; }
+            .info h3,p {  margin: 0;  padding: 0; }
+            .room { margin: 0; position: relative; text-align: center; }
+            .room h4 {
+                padding: 0; width: 8rem; left: 50%; top: 0;
+                margin: 0 0 0 30%; font-weight: 400; font-size: .75rem;
+                background-color: #d54545;color: #ffe4a5; border-radius: 0 0 1rem 1rem;}
+            .seats {display: block; text-align: center; margin-left: 4.2rem; margin-top: 2rem; width: 11rem;}
+            .line {text-align: center;}
+            .line a {margin-top: .3rem;}
+        </style>
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="#">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class="title">购票</h1>
+        </header>
+        <div class="content native-scroll">
+            <div class="row test" style="padding: .5rem .9rem .3rem; background: #f8f8f8;">
+                <div class="col-100">
+                    <a style="float: right" class="button button-big button-fill button-danger" href="#" id="btn-buy">提交订单</a>
+                    <div class="info">
+                        <h3>电影标题</h3>
+                        <p>今天13:00</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="border-top: 1px solid #d6d6d6; background: #f8f8f8; padding: .3rem 0 .3rem 2rem; opacity: .9; transform: scale(1, 1);">
+                <div class="col-33"><span class="seat"></span><span class="intro">可选</span></div>
+                <div class="col-33"><span class="seat selected"></span><span class="intro">已选</span></div>
+                <div class="col-33"><span class="seat sold"></span><span class="intro">已售</span></div>
+            </div>
+            <div class="row" style="margin-left: 0;">
+                <div class="room">
+                    <h4>屏幕</h4>
+                    <div class="seats" id="seats">
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat sold"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+                        <a class="seat selectable"></a>
+
+                        <a class="seat selectable"></a>
+                        <a class="seat selected"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <a class="seat"></a>
+                        <!-- more -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).on('click', '#btn-buy', function (event) {
+                var $e = $(event.currentTarget);
+                $.showPreloader('提交订单');
+                setTimeout(function () {
+                    $.hidePreloader();
+                    $.confirm('确定支付?', '提示',
+                        function () {
+                            console.log('networking');
+
+                        },
+                        function () {
+                            $.toast("订单已取消");
+                            console.log('done')
+                        }
+                    );
+                }, 1500);
+
+            });
+        </script>
+    </div>
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/??sm.min.js,sm-extend.min.js'
+        charset='utf-8'></script>
+</body>
+</html>
