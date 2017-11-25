@@ -8,9 +8,9 @@
         <div class="col-20">&nbsp;</div>
         <div class="col-60" style="text-align: center">
             <div class="head">
-                <img src="img/doge.png">
+                <img src="{{ user.head }}">
             </div>
-            <div class="nickname">nickname</div>
+            <div class="nickname">{{ user.nickname }}</div>
         </div>
         <div class="col-20">&nbsp;</div>
     </div>
@@ -20,7 +20,7 @@
             <li class="item-content">
                 <div class="item-inner">
                     <div class="item-title">手机</div>
-                    <div class="item-after">{{ user.phone|default_if_none:"尚未绑定" }}</div>
+                    <div class="item-after">{{ user.phone|default:"尚未绑定" }}</div>
                 </div>
             </li>
 

@@ -14,13 +14,13 @@ def get_orders(request):
         return HttpResponse(status=400)
 
     openid = request.session['openid']
-    order_list = get_list_or_404(Order, user_id=openid)
-    render(request, 'orders.html', {'orders': order_list})
+    order_list = Order.objects.filter(user_id=openid)
+    return render(request, 'orders.html', {'orders': order_list})
 
 
 def buy(request, session_id):
     session = get_object_or_404(Session, id=session_id)
-    session['end_time'] = session.start_time + timedelta(minutes=session.movie_id.length)
+    # session['end_time'] = session.start_time + timedelta(minutes=session.movie_id.length)
     return render(request, 'buy.html', {'s': session})
 
 

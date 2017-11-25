@@ -11,7 +11,7 @@ def get_movies(request):
     """
     movie_list = Movie.objects.all()
     hot_list = movie_list[:6]
-    render(request, 'movies.html', {'movies': movie_list, 'hot': hot_list})
+    return render(request, 'movies.html', {'movies': movie_list, 'hot': hot_list})
 
 
 def get_movie(request, movie_id):
@@ -23,4 +23,4 @@ def get_movie(request, movie_id):
     """
     movie = get_object_or_404(Movie, id=movie_id)
     session_list = Session.objects.filter(movie_id=movie)
-    render(request, 'movie.html', {'movie': movie, 'session_list': session_list})
+    return render(request, 'movie.html', {'movie': movie, 'session_list': session_list})

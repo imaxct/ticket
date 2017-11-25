@@ -2,9 +2,10 @@ import requests
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-
+from django.urls import reverse
 from ..constants import *
 from ..models import *
+import random
 
 
 def oauth(request):
@@ -31,7 +32,7 @@ def oauth(request):
         )
         user.save()
     request.session['openid'] = user_info['openid']
-    request.session['user'] = user
+    # request.session['user'] = user
     return redirect('index')
 
 
@@ -56,3 +57,20 @@ def get_user_info(code):
     if ret.status_code != 200:
         return None
     return ret.json()
+
+
+def test(request):
+    try:
+        user = User.objects.get(openid='openid')
+    except User.DoesNotExist:
+        user = User(
+            openid='openid',
+            nickname='nickname',
+            head='http://www.feizl.com/upload2007/2014_01/140116182482507.jpg',
+            score=0,
+            remaining=0
+        )
+        user.save()
+    request.session['openid'] = 'openid'
+    # request.session['user'] = user
+    return redirect('index')

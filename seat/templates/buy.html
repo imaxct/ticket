@@ -95,13 +95,36 @@
                 .on('click', '.selectable', function (event) {
                     var $e = $(event.currentTarget);
                     var num = $e.data('num');
-                    console.log(num);
+                    $e.removeClass('selectable');
+                    $e.addClass('selected');
+                    var row = parseInt(num / 8) + 1, col = (num % 8 === 0) ? 8 : (num%8);
+                    seat_arr.push({key: num, str: row + '排' + col + '座'});
+                    renderTextAndPrice();
                 })
                 .on('click', '.selected', function (event) {
-
+                    var $e = $(event.currentTarget);
+                    var num = $e.data('num');
+                    $e.removeClass('selected');
+                    $e.addClass('selectable');
+                    for (var i = 0; i < seat_arr.length; i++){
+                        if (seat_arr[i].key == num) {
+                            seat_arr.splice(i, 1);
+                            break;
+                        }
+                    }
+                    renderTextAndPrice();
                 });
             function renderTextAndPrice() {
-
+                var str = '';
+                for (var i = 0; i < seat_arr.length; i++){
+                    str += seat_arr[i].str + ','
+                }
+                str = str.substr(0, str.length-1);
+                $('#select').html(str);
+                $('#price').html('');
+                if (seat_arr.length > 0) {
+                    $('#price').html(seat_arr.length * price + '元');
+                }
             }
         </script>
     </div>

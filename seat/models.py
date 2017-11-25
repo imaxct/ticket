@@ -43,6 +43,9 @@ class Session(models.Model):
     price = models.FloatField()
     seat = models.CharField(max_length=60)
 
+    def __str__(self):
+        return '%s - %s - %s - %s' % (self.id, self.movie_id.name, self.start_time, self.price)
+
     class Meta:
         db_table = 'ticket_session'
 
@@ -52,6 +55,9 @@ class Order(models.Model):
     user_id = models.ForeignKey(User, db_column='user_id')
     seats = models.CharField(max_length=50)
     price = models.FloatField()
+
+    def __str__(self):
+        return '%s %s %s %s' % (self.session_id, self.user_id, self.seats, self.price)
 
     class Meta:
         db_table = 'ticket_order'
