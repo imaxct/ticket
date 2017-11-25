@@ -6,7 +6,7 @@
             {% for h in hot %}
             <div class="swiper-slide">
                 <a href="{% url 'movie' h.id %}">
-                    <img src="{{ h.url }}">
+                    <img src="{{ h.url }}" style="width:128px;">
                 </a>
             </div>
             {% endfor %}
@@ -49,7 +49,7 @@
                             <div class="item-after" style="color: #d54545;">{{ m.price }}起</div>
                         </div>
                         <div class="item-subtitle" style="margin-top: .33rem;">{{ m.type }}</div>
-                        <div class="item-text">主演:{{ m.actor }}...</div>
+                        <div class="item-text">主演:{{ m.actor }}</div>
                     </div>
                 </a>
             </li>

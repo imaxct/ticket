@@ -57,9 +57,9 @@
                     <div class="seats" id="seats">
                         {% for x in s.seat %}
                             {% if x == '0' %}
-                            <a class="seat selectable" data-num="{{ forloop.counter0 }}"></a>
+                            <a href="javascript:" class="seat selectable" data-num="{{ forloop.counter0 }}"></a>
                             {% else %}
-                            <a class="seat sold" data-num="{{ forloop.counter0 }}"></a>
+                            <a href="javascript:" class="seat sold" data-num="{{ forloop.counter0 }}"></a>
                             {% endif %}
                         {% endfor %}
                         <!-- more -->
@@ -67,8 +67,8 @@
                 </div>
             </div>
             <div class="row" style="margin: .5rem .5rem 0">
-                <div id="select" class="se">1排2座,3排4座</div>
-                <div id="price" class="price">33元</div>
+                <div id="select" class="se"></div>
+                <div id="price" class="price"></div>
             </div>
         </div>
         <script>
@@ -92,20 +92,43 @@
                         );
                     }, 1500);
                 })
-                .on('click', '.selectable', function (event) {
+                .on('click', '#seats .seat', function (event) {
                     var $e = $(event.currentTarget);
                     var num = $e.data('num');
-                    $e.removeClass('selectable');
-                    $e.addClass('selected');
+                    if ($e.hasClass('selectable')) {
+                        var row = parseInt(num / 8) + 1, col = num % 8 + 1;
+                        if (seat_arr.length >= 3){
+                            $.alert('每人最多购买三张票.');
+                            return;
+                        }
+                        seat_arr.push({key: num, str: row + '排' + col + '座'});
+                        $e.removeClass('selectable').addClass('selected');
+                        renderTextAndPrice();
+                    }else if ($e.hasClass('selected')){
+                        for (var i = 0; i < seat_arr.length; i++){
+                            if (seat_arr[i].key == num) {
+                                seat_arr.splice(i, 1);
+                                break;
+                            }
+                        }
+                        renderTextAndPrice();
+                        $e.removeClass('selected').addClass('selectable');
+                    }
+                })
+                {% comment %}.on('click', '#seats .seat.selectable', function (event) {
+                    var $e = $(event.currentTarget);
+                    var num = $e.data('num');
                     var row = parseInt(num / 8) + 1, col = (num % 8 === 0) ? 8 : (num%8);
                     seat_arr.push({key: num, str: row + '排' + col + '座'});
+                    console.log($e);
+                    $e.attr('class', 'seat selected');
                     renderTextAndPrice();
+                    event.preventDefault();
                 })
-                .on('click', '.selected', function (event) {
+                .on('click', '#seats .seat.selected', function (event) {
                     var $e = $(event.currentTarget);
                     var num = $e.data('num');
-                    $e.removeClass('selected');
-                    $e.addClass('selectable');
+                    $e.attr('class', 'seat selectable');
                     for (var i = 0; i < seat_arr.length; i++){
                         if (seat_arr[i].key == num) {
                             seat_arr.splice(i, 1);
@@ -113,7 +136,7 @@
                         }
                     }
                     renderTextAndPrice();
-                });
+                }){% endcomment %};
             function renderTextAndPrice() {
                 var str = '';
                 for (var i = 0; i < seat_arr.length; i++){
@@ -123,7 +146,7 @@
                 $('#select').html(str);
                 $('#price').html('');
                 if (seat_arr.length > 0) {
-                    $('#price').html(seat_arr.length * price + '元');
+                    $('#price').html( (seat_arr.length * price).toFixed(2) + '元');
                 }
             }
         </script>
