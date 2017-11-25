@@ -17,7 +17,7 @@ class User(models.Model):
 
 
 class Movie(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, auto_created=True)
     name = models.CharField(max_length=200)
     ename = models.CharField(max_length=200, db_column='eng_name')
     type = models.CharField(max_length=200)
@@ -37,7 +37,7 @@ class Movie(models.Model):
 
 
 class Session(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.IntegerField(primary_key=True, auto_created=True)
     movie_id = models.ForeignKey(Movie, db_column='movie_id', on_delete=models.CASCADE)
     start_time = models.DateTimeField(db_column='start_time')
     price = models.FloatField()
