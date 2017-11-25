@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="page-group">
-    <div class="page page-current">
+    <div class="page page-current" id="page-buy">
         <style>
             .seat {  float: left;display: inline-block;  font-size: 0;  width: 30px;  height: 26px;  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAXdEVYdENyZWF0aW9uIFRpbWUAMjAxNC4yLjE0TpwzHgAAAWtJREFUWIXt2L9Kw0AcwPGvuQ4WkwZuCWmGzl1dSsG1L6DiKL6A4kPoC4hPIfUFBEf9PUKf4A46RiudLjgYtEONgSstwn3X+/e5kCzZE5EEuAeOgZjfS8bj8aJhvHUisg8sG6YsgClw2QHu+v3+eVEUKKXWzp7NZpRlOQKeNwEEjtI0ZTgcrh10zsXGmAtrbRUBp004gCzLAG7rm3tV73FT77k2pRRFUQCcRUDchAPQWpPn+Qh4EZGJiDQvWA9TIjIBXvM8H2mtG+fXprjT9oDBYECSJIfz+fypLMs3EZkB7y2XJ8AwTdNelmX8hVutNRC+nqTWGudcb7lcjpxzrdYppeh2u42v0UaAqwfGcdMHv7mirZziUQD6FoC+BaBvAehbAPoWgL4FoG8B6FsA+haAvgWgbwHoWwD6FoC+/Qvgou1/vm1WmxYRMDXGUFXVjkk/VVWFMQbgoQNcWWsja+0JcLBb2ncfwCNw/Qk+3GWURNQyowAAAABJRU5ErkJggg==) no-repeat 0 1px; background-size: 1.1rem 1.1rem; }
             .seat.sold {  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAABx0RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNui8sowAAAAXdEVYdENyZWF0aW9uIFRpbWUAMjAxNC4yLjE0TpwzHgAABAFJREFUWIXtmE1sFHUYh5+d2e7sx+xud/thm4Y20AZFjJVIlxbkYMVkESvEGk4m4sGjyM2rB2LsTYmePOnBA9VEipEmSjFcWotCIUSpaWtAaSvbdr9m9nNm1sO2mEa7OzNbCyY+1/n93/fJzH/e+XDMRCN+4AzwCiCzMZ6u0clcheOmmYlGAkCyQkQBPgfedALvAydM1H0G+LZmuzKRKsdlyk6GABw3WfT0TDTirsUKYLXGaZPx446ZaKRkof414G1grGt0UrcoJgL9wBCwx+w6q4JrpICfgbTJvB/YBQSsNnJaXbBKANhnc60lhK1oUgv/C9bKQy9o9yZZh9TeRP3hvXh2tiEGvOipDNlf7pL85hq5ucWaatsdM/cJvRghfLQXHA4MNYcWV3CGZASfG0qwcm6c+FeTtuvXdAaD/d2Ej/WhJVSWPruEOjUHRgkEB74nt9P4aj/hY30Y2QLJi1O2etjeg2LAS3jwALqSY35oGPXqbFkOwCihTs0x/95ZdCVH+OX9iEHv1grKPTsRpDoSF65QjP3zi0lxKUXi6ysIUh3+yKNbK+je0QKAOvVrxZw6NQeAtL3FVh/bgoLHBYCeylTM6eksUN4StvrYWmUDh2iv1ZYJlgx708y2oJEvAiDKld9hRZ8EgJ6uvBU2wrZgbnYBAP/+XRVzcl/5eH41bxXbgsrELQw1R/0LPQQPPYVDWF/KIQgEn+0mdKQHQ82RHr9lq4+tR52rrYHiQhyps5XWkwMIHgk9nSE3u4ieyiAGvLg7WxD9XoxsgcWPzpOdvourrYHC70uWeoknu9resbKgYfAAj7wRRUtmUK/OoExOI7jrkNoakbY1IXU042oJgW6Qnpjmj49HKdyJETj4BK2njiK46sj+dMd0P0vP4tDAPuoP76W4lCJzvTyAteU0sU8uEvt0DGdYRpQ96EoWbUWB0l8XR702S/C5buqjT2MUisRHvjfV0/Qe9DzeTvilXrS4wvzQMFpcWR8oldCW0+Rv30NbTq+TA9CVLAsfnEOLK4QHevHu7tg8QYfLSfPrz0OpxOKH5/8uZxItrrB4ZoSSrtN04hAOV/ULaErQ3/sYzpBM8rsb5G/fsyW3Rv63GMmx6zhDctURZVrQt6cTgNTlmzXJrZG6dKNct3tH1awpQde2JvSkanlEbEQxlkSLK0jtzVWzpgRF2W17322EnlAQ/Z6qOVOCRraAszFY/s7YBASvhLMpiJ6p/jfP1BxMXb5J6EgPHe++RnEpVbNgXWMAwecmceGHzRGMj0zgEAUCB3cjdVTfN9UwMnkSoz+y8uV41WzNn53/Ng/9n4X/hODmzo/NRRGAsw/aogLDTuAU5bt5EPA9WJ/7qMAXwFt/Ary9XoLKZbyAAAAAAElFTkSuQmCC); }
@@ -72,39 +72,67 @@
             </div>
         </div>
         <script>
-            var price = {{ s.price }};
-            var seat_arr = [];
-            $(document)
-                .on('click', '#btn-buy', function (event) {
-                    var $e = $(event.currentTarget);
-                    $.showPreloader('提交订单');
-                    setTimeout(function () {
-                        $.hidePreloader();
-                        $.confirm('确定支付?', '提示',
-                            function () {
-                                console.log('networking');
+            (function(){
+                var price = {{ s.price }};
+                var seat_arr = [];
+                $(document).on('pageAnimationStart', function (e, pageId, $page) {
+                    seat_arr = [];
+                });
+                $(document)
+                    .on('click', '#btn-buy', function (event) {
+                        var $e = $(event.currentTarget);
+                        $.showPreloader('提交订单');
+                        setTimeout(function () {
+                            $.hidePreloader();
+                            $.confirm('确定支付?', '提示',
+                                function () {
+                                    console.log('networking');
 
-                            },
-                            function () {
-                                $.toast("订单已取消");
-                                console.log('done')
+                                },
+                                function () {
+                                    $.toast("订单已取消");
+                                    console.log('done')
+                                }
+                            );
+                        }, 1500);
+                    })
+                    .on('click', '#seats .seat', function (event) {
+                        var $e = $(event.currentTarget);
+                        var num = $e.data('num');
+                        if ($e.hasClass('selectable')) {
+                            var row = parseInt(num / 8) + 1, col = num % 8 + 1;
+                            if (seat_arr.length >= 3){
+                                $.alert('每人最多购买三张票.');
+                                return;
                             }
-                        );
-                    }, 1500);
-                })
-                .on('click', '#seats .seat', function (event) {
-                    var $e = $(event.currentTarget);
-                    var num = $e.data('num');
-                    if ($e.hasClass('selectable')) {
-                        var row = parseInt(num / 8) + 1, col = num % 8 + 1;
-                        if (seat_arr.length >= 3){
-                            $.alert('每人最多购买三张票.');
-                            return;
+                            seat_arr.push({key: num, str: row + '排' + col + '座'});
+                            $e.removeClass('selectable').addClass('selected');
+                            renderTextAndPrice();
+                        }else if ($e.hasClass('selected')){
+                            for (var i = 0; i < seat_arr.length; i++){
+                                if (seat_arr[i].key == num) {
+                                    seat_arr.splice(i, 1);
+                                    break;
+                                }
+                            }
+                            renderTextAndPrice();
+                            $e.removeClass('selected').addClass('selectable');
                         }
+                    })
+                    {% comment %}.on('click', '#seats .seat.selectable', function (event) {
+                        var $e = $(event.currentTarget);
+                        var num = $e.data('num');
+                        var row = parseInt(num / 8) + 1, col = (num % 8 === 0) ? 8 : (num%8);
                         seat_arr.push({key: num, str: row + '排' + col + '座'});
-                        $e.removeClass('selectable').addClass('selected');
+                        console.log($e);
+                        $e.attr('class', 'seat selected');
                         renderTextAndPrice();
-                    }else if ($e.hasClass('selected')){
+                        event.preventDefault();
+                    })
+                    .on('click', '#seats .seat.selected', function (event) {
+                        var $e = $(event.currentTarget);
+                        var num = $e.data('num');
+                        $e.attr('class', 'seat selectable');
                         for (var i = 0; i < seat_arr.length; i++){
                             if (seat_arr[i].key == num) {
                                 seat_arr.splice(i, 1);
@@ -112,43 +140,19 @@
                             }
                         }
                         renderTextAndPrice();
-                        $e.removeClass('selected').addClass('selectable');
-                    }
-                })
-                {% comment %}.on('click', '#seats .seat.selectable', function (event) {
-                    var $e = $(event.currentTarget);
-                    var num = $e.data('num');
-                    var row = parseInt(num / 8) + 1, col = (num % 8 === 0) ? 8 : (num%8);
-                    seat_arr.push({key: num, str: row + '排' + col + '座'});
-                    console.log($e);
-                    $e.attr('class', 'seat selected');
-                    renderTextAndPrice();
-                    event.preventDefault();
-                })
-                .on('click', '#seats .seat.selected', function (event) {
-                    var $e = $(event.currentTarget);
-                    var num = $e.data('num');
-                    $e.attr('class', 'seat selectable');
+                    }){% endcomment %};
+                function renderTextAndPrice() {
+                    var str = '';
                     for (var i = 0; i < seat_arr.length; i++){
-                        if (seat_arr[i].key == num) {
-                            seat_arr.splice(i, 1);
-                            break;
-                        }
+                        str += seat_arr[i].str + ','
                     }
-                    renderTextAndPrice();
-                }){% endcomment %};
-            function renderTextAndPrice() {
-                var str = '';
-                for (var i = 0; i < seat_arr.length; i++){
-                    str += seat_arr[i].str + ','
-                }
-                str = str.substr(0, str.length-1);
-                $('#select').html(str);
-                $('#price').html('');
-                if (seat_arr.length > 0) {
-                    $('#price').html( (seat_arr.length * price).toFixed(2) + '元');
-                }
-            }
+                    str = str.substr(0, str.length-1);
+                    $('#select').html(str);
+                    $('#price').html('');
+                    if (seat_arr.length > 0) {
+                        $('#price').html( (seat_arr.length * price).toFixed(2) + '元');
+                    }}
+            })();
         </script>
     </div>
 </div>

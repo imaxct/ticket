@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="page-group">
-    <div class="page page-current">
+    <div class="page page-current" id="page-movie">
         <style>
             .movie {  position: relative;  color: #fff;  padding: .3rem;  line-height: 1;  overflow: hidden;  box-sizing: border-box;  -webkit-filter: blur(0);  filter: blur(0);  }
             .movie-filter {  top: 0;  left: 0;  right: 0;  bottom: 0;  width: 100%;  position: absolute;  background-color: #40454d;  opacity: .55;  }
@@ -61,7 +61,7 @@
                 <ul>
                     {% for s in session_list %}
                     <li>
-                        <a href="{% url 'buy' s.id %}" class="item-link item-content">
+                        <a href="{% url 'buy' s.id %}" class="item-link item-content" data-no-cache="true">
                             <div class="item-inner">
                                 <div class="item-title-row">
                                     <div class="item-title">{{ s.start_time|date:"H:i" }}</div>
