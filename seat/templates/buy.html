@@ -26,6 +26,8 @@
             .seats {display: block; text-align: center; margin-left: 4.2rem; margin-top: 2rem; width: 11rem;}
             .line {text-align: center;}
             .line a {margin-top: .3rem;}
+            .se{ float: left; margin-left: 3rem; font-size: medium;}
+            .price{ float: right; color: #d54545; font-size: large; margin-right: 3rem;}
         </style>
         <header class="bar bar-nav">
             <a class="button button-link button-nav pull-left back" href="#">
@@ -39,8 +41,8 @@
                 <div class="col-100">
                     <a style="float: right" class="button button-big button-fill button-danger" href="#" id="btn-buy">提交订单</a>
                     <div class="info">
-                        <h3>电影标题</h3>
-                        <p>今天13:00</p>
+                        <h3>{{ s.movie_id.name }}</h3>
+                        <p>{{ s.start_time|date:"Y H:i" }}</p>
                     </div>
                 </div>
             </div>
@@ -53,71 +55,54 @@
                 <div class="room">
                     <h4>屏幕</h4>
                     <div class="seats" id="seats">
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat sold"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-                        <a class="seat selectable"></a>
-
-                        <a class="seat selectable"></a>
-                        <a class="seat selected"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
-                        <a class="seat"></a>
+                        {% for x in s.seat %}
+                            {% if x == '0' %}
+                            <a class="seat selectable" data-num="{{ forloop.counter0 }}"></a>
+                            {% else %}
+                            <a class="seat sold" data-num="{{ forloop.counter0 }}"></a>
+                            {% endif %}
+                        {% endfor %}
                         <!-- more -->
                     </div>
                 </div>
             </div>
+            <div class="row" style="margin: .5rem .5rem 0">
+                <div id="select" class="se">1排2座,3排4座</div>
+                <div id="price" class="price">33元</div>
+            </div>
         </div>
         <script>
-            $(document).on('click', '#btn-buy', function (event) {
-                var $e = $(event.currentTarget);
-                $.showPreloader('提交订单');
-                setTimeout(function () {
-                    $.hidePreloader();
-                    $.confirm('确定支付?', '提示',
-                        function () {
-                            console.log('networking');
+            var price = {{ s.price }};
+            var seat_arr = [];
+            $(document)
+                .on('click', '#btn-buy', function (event) {
+                    var $e = $(event.currentTarget);
+                    $.showPreloader('提交订单');
+                    setTimeout(function () {
+                        $.hidePreloader();
+                        $.confirm('确定支付?', '提示',
+                            function () {
+                                console.log('networking');
 
-                        },
-                        function () {
-                            $.toast("订单已取消");
-                            console.log('done')
-                        }
-                    );
-                }, 1500);
+                            },
+                            function () {
+                                $.toast("订单已取消");
+                                console.log('done')
+                            }
+                        );
+                    }, 1500);
+                })
+                .on('click', '.selectable', function (event) {
+                    var $e = $(event.currentTarget);
+                    var num = $e.data('num');
+                    console.log(num);
+                })
+                .on('click', '.selected', function (event) {
 
-            });
+                });
+            function renderTextAndPrice() {
+
+            }
         </script>
     </div>
 </div>

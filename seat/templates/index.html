@@ -39,7 +39,7 @@
 <script>
     $(document)
         .on('pageInit', 'body', function () {
-            $('#content').load('movies.html');
+            $('#content').load('{% url 'movies' %}');
         })
         .on('click', '.tab-item', function (event) {
             var el = event.currentTarget;
@@ -47,13 +47,13 @@
             $(el).addClass('active');
         })
         .on('click', '#movies', function () {
-            $('#content').load('movies.html');
+            $('#content').load('{% url 'movies' %}');
         })
         .on('click', '#orders', function () {
-            $('#content').load('orders.html');
+            $('#content').load('{% url 'orders' %}');
         })
         .on('click', '#mine', function () {
-            $('#content').load('mine.html');
+            $('#content').load('{% url 'mine' %}');
         });
     $.init();
 </script>

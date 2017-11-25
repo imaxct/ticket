@@ -1,6 +1,7 @@
 from django.http import HttpRequest, Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_list_or_404, render, get_object_or_404
 from ..models import *
+from datetime import timedelta
 
 
 def get_orders(request):
@@ -17,7 +18,13 @@ def get_orders(request):
     render(request, 'orders.html', {'orders': order_list})
 
 
-def buy(request):
+def buy(request, session_id):
+    session = get_object_or_404(Session, id=session_id)
+    session['end_time'] = session.start_time + timedelta(minutes=session.movie_id.length)
+    return render(request, 'buy.html', {'s': session})
+
+
+def do_buy(request):
     """
     购票
     :param request:

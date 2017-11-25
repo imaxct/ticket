@@ -3,12 +3,14 @@
         <!--<span style="padding-left: .5em">热门电影</span>-->
         <div class="content-block-title">热门电影</div>
         <div class="swiper-wrapper">
+            {% for h in hot %}
             <div class="swiper-slide">
-                <a href="movie.html">
-                    <img src="img/9c80c528f3cd023472f2fec77671211b1021404.jpg">
+                <a href="{% url 'movie' h.id %}">
+                    <img src="{{ h.url }}">
                 </a>
             </div>
-            <div class="swiper-slide">
+            {% endfor %}
+            {% comment %}<div class="swiper-slide">
                 <a href="#">
                     <img src="img/5102b3f7261caa09c1c9b1212f09cc1f461902.png.webp">
                 </a>
@@ -27,30 +29,33 @@
                 <a href="#">
                     <img src="img/b9395cd202a461303cf06cea89292071556090.png">
                 </a>
-            </div>
+            </div>{% endcomment %}
         </div>
         <div class="swiper-pagination"></div>
     </div>
     <div class="content-block-title">所有电影</div>
     <div class="list-block media-list">
         <ul>
+            {% for m in movies %}
             <li>
-                <a class="item-link item-content" href="#">
+                <a class="item-link item-content" href="{% url 'movie' m.id %}">
                     <div class="item-media">
-                        <img src="http://p1.meituan.net/movie/b9395cd202a461303cf06cea89292071556090.png.webp@128w_128h"
+                        <img src="{{ m.url }}"
                              style='width: 4rem;'>
                     </div>
                     <div class="item-inner">
                         <div class="item-title-row">
-                            <div class="item-title">正义联盟</div>
-                            <div class="item-after" style="color: #d54545;">29.33起</div>
+                            <div class="item-title">{{ m.name }}</div>
+                            <div class="item-after" style="color: #d54545;">{{ m.price }}起</div>
                         </div>
-                        <div class="item-subtitle" style="margin-top: .33rem;">科幻,战争</div>
-                        <div class="item-text">主演:大卫科波菲尔...</div>
+                        <div class="item-subtitle" style="margin-top: .33rem;">{{ m.type }}</div>
+                        <div class="item-text">主演:{{ m.actor }}...</div>
                     </div>
                 </a>
             </li>
+            {% endfor %}
             <!-- more -->
+        {% comment %}
             <li>
                 <a class="item-link item-content" href="#">
                     <div class="item-media">
@@ -82,7 +87,7 @@
                         <div class="item-text">此处是文本内容...</div>
                     </div>
                 </a>
-            </li>
+            </li>{% endcomment %}
         </ul>
     </div>
 </div>

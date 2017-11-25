@@ -33,44 +33,46 @@
                 <span class="icon icon-left"></span>
                 返回
             </a>
-            <h1 class="title">电影标题</h1>
+            <h1 class="title">{{ movie.name }}</h1>
         </header>
         <div class="content native-scroll">
             <div class="row movies">
                 <div class="movie">
                     <div class="movie-back"
-                         style="background-image: url('http://p1.meituan.net/movie/b9395cd202a461303cf06cea89292071556090.png@177w_249h.webp')"></div>
+                         style="background-image: url('{{ movie.url }}')"></div>
                     <div class="movie-filter"></div>
                     <div class="movie-container">
-                        <img src="http://p1.meituan.net/movie/b9395cd202a461303cf06cea89292071556090.png@177w_249h.webp">
+                        <img src="{{ movie.url }}">
                         <div class="info">
-                            <div class="intro name">名字</div>
-                            <div class="intro ename touming">英文名字</div>
-                            <div class="intro touming">类型</div>
-                            <div class="intro touming">国家/时长</div>
-                            <div class="intro touming">上映时间</div>
+                            <div class="intro name">{{ movie.name }}</div>
+                            <div class="intro ename touming">{{ movie.ename }}</div>
+                            <div class="intro touming">{{ movie.type }}</div>
+                            <div class="intro touming">{{ movie.country }}/{{ movie.length }}分钟</div>
+                            <div class="intro touming">{{ movie.comeout|date:"Y M" }}上映</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin-left: 0;">
-                <p class="brif">本片讲述的是受到超人（亨利·卡维尔 饰）无私奉献的影响，蝙蝠侠（本·阿弗莱克 饰）重燃了对人类的信心，接受了新盟友神奇女侠（盖尔·加朵 饰）的帮助，去对抗更加强大的敌人。蝙蝠侠和神奇女侠一同寻找并招募了一支超人类联盟来抵挡新觉醒的威胁。但尽管这支队伍集结了超人、蝙蝠侠、神奇女侠、闪电侠（埃兹拉·米勒 饰）、海王（杰森·莫玛 饰）和钢骨（雷·费舍 饰）等人，他们似乎无法阻止敌人对地球的进攻……</p>
+                <p class="brif">{{ movie.intro }}</p>
             </div>
             <div class="content-block-title">场次</div>
             <div class="list-block media-list">
                 <ul>
+                    {% for s in session_list %}
                     <li>
-                        <a href="buy.html" class="item-link item-content">
+                        <a href="{% url 'buy' s.id %}" class="item-link item-content">
                             <div class="item-inner">
                                 <div class="item-title-row">
-                                    <div class="item-title">13:30</div>
-                                    <div class="item-after" style="font-size: large; color: #eb5211; font-weight: bold;">33元</div>
+                                    <div class="item-title">{{ s.start_time|date:"H:i" }}</div>
+                                    <div class="item-after" style="font-size: large; color: #eb5211; font-weight: bold;">{{ s.price }}元</div>
                                 </div>
                                 <div class="item-subtitle" style="padding-top: .2rem;">杜比全景声厅</div>
-                                <div class="item-text">14:50结束</div>
+                                <div class="item-text">{{ s.movie_id.length }}分钟</div>
                             </div>
                         </a>
                     </li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

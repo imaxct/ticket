@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
-from ..models import Movie
+from ..models import *
 
 
 def get_movies(request):
@@ -22,4 +22,5 @@ def get_movie(request, movie_id):
     :return:
     """
     movie = get_object_or_404(Movie, id=movie_id)
-    render(request, 'movie.html', {'movie': movie})
+    session_list = Session.objects.filter(movie_id=movie)
+    render(request, 'movie.html', {'movie': movie, 'session_list': session_list})

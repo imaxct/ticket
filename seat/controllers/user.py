@@ -1,12 +1,18 @@
-from django.http import HttpResponse, HttpRequest
-from django.shortcuts import get_list_or_404, get_object_or_404, render, redirect
 import requests
-from ..constants import *
 from django.conf import settings
+from django.http import HttpResponse
+from django.shortcuts import redirect, render, get_object_or_404
+
+from ..constants import *
 from ..models import *
 
 
 def oauth(request):
+    """
+    oauth
+    :param request:
+    :return:
+    """
     code = request.GET['code']
     if code is None or code == '':
         return HttpResponse(status=400)
@@ -27,6 +33,14 @@ def oauth(request):
     request.session['openid'] = user_info['openid']
     request.session['user'] = user
     return redirect('index')
+
+
+def mine(request):
+    if 'openid' not in request.session:
+        return HttpResponse(status=400)
+    openid = request.session['openid']
+    user = get_object_or_404(User, openid=openid)
+    return render(request, 'mine.html', {'user': user})
 
 
 def get_user_info(code):
