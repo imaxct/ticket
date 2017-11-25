@@ -75,7 +75,7 @@
             (function(){
                 var price = {{ s.price }};
                 var seat_arr = [];
-                $(document).on('pageAnimationStart', function (e, pageId, $page) {
+                $(document).on('pageAnimationEnd', function (e, pageId, $page) {
                     seat_arr = [];
                 });
                 $(document)
