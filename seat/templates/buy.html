@@ -86,17 +86,43 @@
                             $.hidePreloader();
                             $.confirm('确定支付?', '提示',
                                 function () {
-                                    console.log('networking');
-
+                                var seats_str = '';
+                                for (var i = 0; i<seat_arr.length; i++) {
+                                    seats_str += seat_arr[i].key + '|';
+                                }
+                                seats_str = seats_str.substring(0, seats_str.length - 1);
+                                $.ajax({
+                                    url: '{% url 'ajax_buy' %}',
+                                    type: 'post',
+                                    headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                                    data: {seats: seats_str, sid: '{{ sid }}'},
+                                    dataType: 'json',
+                                    success: function (res) {
+                                        if (res.ok){
+                                            $.alert('购票成功', function () {
+                                                window.location.href = '{% url 'index' %}';
+                                            });
+                                        }else {
+                                            $.alert(res.msg, function () {
+                                                window.history.back();
+                                            });
+                                        }
+                                    },
+                                    error: function (res) {
+                                        $.alert('网络错误, 请检查网络连接.', function () {
+                                            window.location.href = '{% url 'index' %}';
+                                        });
+                                    }
+                                });
                                 },
                                 function () {
                                     $.toast("订单已取消");
-                                    console.log('done')
                                 }
                             );
-                        }, 1500);
-                    })
-                    .on('click', '#seats .seat', function (event) {
+                        }, 1000);
+                    });
+                $('#seats .seat').on('click', function (event) {
+                        console.log(seat_arr);
                         var $e = $(event.currentTarget);
                         var num = $e.data('num');
                         if ($e.hasClass('selectable')) {
@@ -117,8 +143,8 @@
                             }
                             renderTextAndPrice();
                             $e.removeClass('selected').addClass('selectable');
-                        }
-                    })
+                        }});
+
                     {% comment %}.on('click', '#seats .seat.selectable', function (event) {
                         var $e = $(event.currentTarget);
                         var num = $e.data('num');

@@ -1,3 +1,4 @@
+{% load dict %}
 <div class="page-index">
     <div class="swiper-container" data-space-between="20" style="margin-top: .5rem; font-size: medium">
         <!--<span style="padding-left: .5em">热门电影</span>-->
@@ -46,7 +47,7 @@
                     <div class="item-inner">
                         <div class="item-title-row">
                             <div class="item-title">{{ m.name }}</div>
-                            <div class="item-after" style="color: #d54545;">{{ m.price }}起</div>
+                            <div class="item-after" style="color: #d54545;">{{ price|item:m.id }}起</div>
                         </div>
                         <div class="item-subtitle" style="margin-top: .33rem;">{{ m.type }}</div>
                         <div class="item-text">主演:{{ m.actor }}</div>

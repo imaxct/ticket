@@ -11,7 +11,12 @@ def get_movies(request):
     """
     movie_list = Movie.objects.all()
     hot_list = movie_list[:6]
-    return render(request, 'movies.html', {'movies': movie_list, 'hot': hot_list})
+    price_list = {}
+    for x in movie_list:
+        session = Session.objects.filter(movie_id=x.id).order_by('price').first()
+        if session is not None:
+            price_list[x.id] = session.price
+    return render(request, 'movies.html', {'movies': movie_list, 'hot': hot_list, 'price': price_list})
 
 
 def get_movie(request, movie_id):
