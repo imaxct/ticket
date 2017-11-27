@@ -16,10 +16,10 @@ def oauth(request):
     """
     code = request.GET['code']
     if code is None or code == '':
-        return HttpResponse(status=400)
+        return HttpResponse(status=400, content='no-code')
     user_info = get_user_info(code)
     if 'errcode' in user_info:
-        return HttpResponse(status=400)
+        return HttpResponse(status=400, content=str(user_info) + URL_ACCESS_TOKEN.format(settings.WECHAT_APP_ID, settings.WECHAT_APP_SECRET, code))
     try:
         user = User.objects.get(openid=user_info['openid'])
     except User.DoesNotExist:
@@ -45,7 +45,7 @@ def mine(request):
 
 
 def get_user_info(code):
-    ret = requests.get(url=URL_ACCESS_TOKEN % (settings.WECHAT_APP_ID, settings.WECHAT_APP_SECRET, code))
+    ret = requests.get(url=URL_ACCESS_TOKEN.format(settings.WECHAT_APP_ID, settings.WECHAT_APP_SECRET, code))
     if ret.status_code != 200:
         return None
     if 'errcode' in ret.json():
@@ -53,7 +53,7 @@ def get_user_info(code):
     ak = ret.json()
     access_token = ak['access_token']
     openid = ak['openid']
-    ret = requests.get(url=URL_USER_INFO % (access_token, openid))
+    ret = requests.get(url=URL_USER_INFO.format(access_token, openid))
     if ret.status_code != 200:
         return None
     return ret.json()
