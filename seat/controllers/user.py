@@ -14,12 +14,17 @@ def oauth(request):
     :param request:
     :return:
     """
+    if 'openid' in request.session:
+        return redirect('index')
+
     code = request.GET['code']
     if code is None or code == '':
         return HttpResponse(status=400, content='no-code')
+
     user_info = get_user_info(code)
     if 'errcode' in user_info:
-        return HttpResponse(status=400, content=str(user_info) + URL_ACCESS_TOKEN.format(settings.WECHAT_APP_ID, settings.WECHAT_APP_SECRET, code))
+        return HttpResponse(status=400, content=str(user_info))
+
     try:
         user = User.objects.get(openid=user_info['openid'])
     except User.DoesNotExist:
@@ -31,8 +36,8 @@ def oauth(request):
             remaining=0
         )
         user.save()
+
     request.session['openid'] = user_info['openid']
-    # request.session['user'] = user
     return redirect('index')
 
 
@@ -72,5 +77,4 @@ def test(request):
         )
         user.save()
     request.session['openid'] = 'openid'
-    # request.session['user'] = user
     return redirect('index')
