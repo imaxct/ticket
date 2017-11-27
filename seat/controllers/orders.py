@@ -4,6 +4,10 @@ from django.shortcuts import render, get_object_or_404
 
 from ..models import *
 
+import logging
+
+logger = logging.getLogger('seat.controller.order')
+
 
 def get_seat_str(seats):
     arr = seats.split('|')
@@ -76,8 +80,8 @@ def do_buy(request):
         with transaction.atomic():
             order.save()
             session.save(update_fields=['seat'])
-    except DatabaseError:
-        print('error')
+    except DatabaseError as e:
+        logger.error(e)
         return JsonResponse({'ok': False, 'msg': '购票失败'}, safe=False)
 
     return JsonResponse({'ok': True}, safe=False)

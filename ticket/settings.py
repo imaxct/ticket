@@ -127,3 +127,27 @@ STATICFILES_DIRS = [
 
 WECHAT_APP_ID = 'wxe81100b871fe71de'
 WECHAT_APP_SECRET = '6770f3372b3bb3bc1502a2b29142fd70'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/root/ticket-error.log',
+        },
+    },
+    'loggers': {
+        'seat.controller.order': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
