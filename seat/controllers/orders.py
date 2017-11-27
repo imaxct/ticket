@@ -50,7 +50,8 @@ def do_buy(request):
     seats = request.POST['seats']
     seat_arr = [int(x) for x in seats.split('|')]
 
-    if len(seat_arr) > 3:
+    num = len(seat_arr)
+    if num > 3:
         return JsonResponse({'ok': False, 'msg': '最多只能购买3张.'}, safe=False)
     session_id = int(request.POST['sid'])
     session = Session.objects.get(id=session_id)
@@ -63,15 +64,18 @@ def do_buy(request):
             if session.seat[pos] == '1':
                 return JsonResponse({'ok': False, 'msg': '座位已经被选, 请更换座位.'}, safe=False)
 
-    order = Order(session_id=session, user_id=user, seats=seats, price=session.price * len(seat_arr))
+    order = Order(session_id=session, user_id=user, seats=seats, price=float(session.price * num))
 
+    temp_str = session.seat
     for x in seat_arr:
-        session.seat = session.seat[:x] + '1' + session.seat[x + 1:]
+        temp_str = temp_str[:x] + '1' + temp_str[x + 1:]
+
+    session.seat = temp_str
 
     try:
         with transaction.atomic():
             order.save()
-            session.save()
+            session.save(update_fields=['seat'])
     except DatabaseError:
         print('error')
         return JsonResponse({'ok': False, 'msg': '购票失败'}, safe=False)
