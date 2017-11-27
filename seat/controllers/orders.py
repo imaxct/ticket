@@ -28,7 +28,7 @@ def get_orders(request):
         return HttpResponse(status=400)
 
     openid = request.session['openid']
-    order_list = Order.objects.filter(user_id=openid)
+    order_list = Order.objects.filter(user_id=openid).order_by('-id')
     seat_list = {x.id: get_seat_str(x.seats) for x in order_list}
     return render(request, 'orders.html', {'orders': order_list, 'seats': seat_list})
 
