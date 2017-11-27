@@ -51,7 +51,7 @@ class Session(models.Model):
 
 
 class Order(models.Model):
-    id = models.IntegerField(primary_key=True, auto_created=True)
+    # id = models.IntegerField(primary_key=True, auto_created=True)
     session_id = models.ForeignKey(Session, db_column='session_id')
     user_id = models.ForeignKey(User, db_column='user_id')
     seats = models.CharField(max_length=50)
