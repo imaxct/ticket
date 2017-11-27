@@ -63,7 +63,7 @@ def do_buy(request):
             if session.seat[pos] == '1':
                 return JsonResponse({'ok': False, 'msg': '座位已经被选, 请更换座位.'}, safe=False)
 
-    order = Order(session_id=session, user_id=user, seats=seats, price=session.price)
+    order = Order(session_id=session, user_id=user, seats=seats, price=session.price * len(seat_arr))
 
     for x in seat_arr:
         session.seat = session.seat[:x] + '1' + session.seat[x + 1:]
