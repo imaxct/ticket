@@ -62,4 +62,3 @@ class Order(models.Model):
 
     class Meta:
         db_table = 'ticket_order'
-        unique_together = ('session_id', 'user_id')
