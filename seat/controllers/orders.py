@@ -14,7 +14,7 @@ def get_seat_str(seats):
     str_list = []
     for x in arr:
         pos = int(x)
-        str_list.append('%s排%s座' % ((pos // 8) + 1, (pos % 8) + 1))
+        str_list.append('%s排%s座' % ((pos // 7) + 1, (pos % 7) + 1))
     return ','.join(str_list)
 
 
