@@ -59,6 +59,7 @@ def get_user_info(code):
     access_token = ak['access_token']
     openid = ak['openid']
     ret = requests.get(url=URL_USER_INFO.format(access_token, openid))
+    ret.encoding = 'utf-8'
     if ret.status_code != 200:
         return None
     return ret.json()
