@@ -122,8 +122,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/'),
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 WECHAT_APP_ID = 'wxe81100b871fe71de'
 WECHAT_APP_SECRET = '6770f3372b3bb3bc1502a2b29142fd70'
