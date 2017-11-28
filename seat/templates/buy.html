@@ -127,7 +127,7 @@
                         var $e = $(event.currentTarget);
                         var num = $e.data('num');
                         if ($e.hasClass('selectable')) {
-                            var row = parseInt(num / 8) + 1, col = num % 8 + 1;
+                            var row = parseInt(num / 7) + 1, col = num % 7 + 1;
                             if (seat_arr.length >= 3){
                                 $.alert('每人最多购买三张票.');
                                 return;
