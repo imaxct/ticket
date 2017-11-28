@@ -4,7 +4,7 @@ from django.db import models
 class User(models.Model):
     openid = models.CharField(primary_key=True, max_length=64)
     phone = models.CharField(max_length=11, unique=True, default=None, null=True)
-    nickname = models.CharField(max_length=64)
+    nickname = models.CharField(max_length=190)
     head = models.CharField(max_length=200)
     remaining = models.FloatField()
     score = models.IntegerField()

@@ -1,11 +1,12 @@
+import base64
+
 import requests
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse
+
 from ..constants import *
 from ..models import *
-import random
 
 
 def oauth(request):
@@ -30,7 +31,7 @@ def oauth(request):
     except User.DoesNotExist:
         user = User(
             openid=user_info['openid'],
-            nickname=user_info['nickname'],
+            nickname=base64.urlsafe_b64encode(user_info['nickname']),
             head=user_info['headimgurl'],
             score=0,
             remaining=0
@@ -46,6 +47,7 @@ def mine(request):
         return HttpResponse(status=400)
     openid = request.session['openid']
     user = get_object_or_404(User, openid=openid)
+    user.nickname = base64.urlsafe_b64decode(user.nickname)
     return render(request, 'mine.html', {'user': user})
 
 
